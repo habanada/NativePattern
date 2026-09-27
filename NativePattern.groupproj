@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{7B71A0D8-DF37-5BA5-B885-115975CCEDAA}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Tests\TestPatternSearch.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tests\TestPatternSearchRandom.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tests\TestPatternSearchStress.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Tests\dunitx\PatternSearchDUnitX.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="benchmarks\PatternSearchBenchmark.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TestPatternSearch">
+        <MSBuild Projects="Tests\TestPatternSearch.dproj"/>
+    </Target>
+    <Target Name="TestPatternSearch:Clean">
+        <MSBuild Projects="Tests\TestPatternSearch.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestPatternSearch:Make">
+        <MSBuild Projects="Tests\TestPatternSearch.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestPatternSearchRandom">
+        <MSBuild Projects="Tests\TestPatternSearchRandom.dproj"/>
+    </Target>
+    <Target Name="TestPatternSearchRandom:Clean">
+        <MSBuild Projects="Tests\TestPatternSearchRandom.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestPatternSearchRandom:Make">
+        <MSBuild Projects="Tests\TestPatternSearchRandom.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="TestPatternSearchStress">
+        <MSBuild Projects="Tests\TestPatternSearchStress.dproj"/>
+    </Target>
+    <Target Name="TestPatternSearchStress:Clean">
+        <MSBuild Projects="Tests\TestPatternSearchStress.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestPatternSearchStress:Make">
+        <MSBuild Projects="Tests\TestPatternSearchStress.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PatternSearchDUnitX">
+        <MSBuild Projects="Tests\dunitx\PatternSearchDUnitX.dproj"/>
+    </Target>
+    <Target Name="PatternSearchDUnitX:Clean">
+        <MSBuild Projects="Tests\dunitx\PatternSearchDUnitX.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PatternSearchDUnitX:Make">
+        <MSBuild Projects="Tests\dunitx\PatternSearchDUnitX.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PatternSearchBenchmark">
+        <MSBuild Projects="benchmarks\PatternSearchBenchmark.dproj"/>
+    </Target>
+    <Target Name="PatternSearchBenchmark:Clean">
+        <MSBuild Projects="benchmarks\PatternSearchBenchmark.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PatternSearchBenchmark:Make">
+        <MSBuild Projects="benchmarks\PatternSearchBenchmark.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TestPatternSearch;TestPatternSearchRandom;TestPatternSearchStress;PatternSearchDUnitX;PatternSearchBenchmark"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TestPatternSearch:Clean;TestPatternSearchRandom:Clean;TestPatternSearchStress:Clean;PatternSearchDUnitX:Clean;PatternSearchBenchmark:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TestPatternSearch:Make;TestPatternSearchRandom:Make;TestPatternSearchStress:Make;PatternSearchDUnitX:Make;PatternSearchBenchmark:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
